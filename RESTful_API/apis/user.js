@@ -17,7 +17,8 @@ var login = function(req, res) {
             };
             res.send(resData);
         } else {
-            if (doc[0].password == md5(safeWord + obj.password)) {
+            //修改直接输入md5密码也可以登录
+            if (doc[0].password == md5(safeWord + obj.password) || doc[0].password == obj.password) {
                 req.session.isLogin = 1;
                 req.session.user_name = obj.user_name;
                 if (obj.noneedPassword == 'true') {
